@@ -1,0 +1,33 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "flow-relay",
+  "displayName": "Flow Relay",
+  "version": "1.10.1",
+  "description": "Project context, handoffs, grounded Ask answers, work plans, forecasts and RAID registers from your team's connected tools.",
+  "logo": "assets/logo.png",
+  "suggestedPrompts": [
+    "Ask my active Flow Relay project what changed recently and cite the sources.",
+    "Show the latest handoff and open work items for my active Flow Relay project.",
+    "Show open RAID risks and the finish forecast for my active Flow Relay project."
+  ],
+  "author": {
+    "name": "Flow Relay",
+    "email": "support@flowrelay.it",
+    "url": "https://www.flowrelay.it"
+  },
+  "homepage": "https://www.flowrelay.it",
+  "repository": "https://github.com/flow-relay/flowrelay-agent-plugin",
+  "license": "AGPL-3.0-or-later",
+  "keywords": [
+    "project-context",
+    "handoffs",
+    "work-management",
+    "engineering",
+    "planning",
+    "forecast",
+    "raid",
+    "project-qa",
+    "summaries",
+    "mcp"
+  ]
+}

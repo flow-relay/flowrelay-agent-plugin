@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "flowrelay": {
+      "type": "http",
+      "url": "https://www.flowrelay.it/mcp"
+    }
+  }
+}

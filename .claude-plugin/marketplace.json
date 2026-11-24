@@ -1,0 +1,18 @@
+{
+  "name": "flow-relay",
+  "description": "Project context, handoffs, grounded Ask answers, work plans, forecasts and RAID registers from your team's connected tools.",
+  "owner": {
+    "name": "Flow Relay",
+    "email": "support@flowrelay.it",
+    "url": "https://www.flowrelay.it"
+  },
+  "plugins": [
+    {
+      "name": "flow-relay",
+      "source": "./",
+      "description": "Project context, handoffs, grounded Ask answers, work plans, forecasts and RAID registers from your team's connected tools.",
+      "version": "1.10.1",
+      "category": "productivity"
+    }
+  ]
+}

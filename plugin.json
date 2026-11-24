@@ -1,0 +1,126 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "flow-relay",
+  "version": "1.10.1",
+  "description": "Project context, handoffs, grounded Ask answers, work plans, forecasts and RAID registers from your team's connected tools.",
+  "author": {
+    "name": "Flow Relay",
+    "email": "support@flowrelay.it",
+    "url": "https://www.flowrelay.it"
+  },
+  "homepage": "https://www.flowrelay.it",
+  "repository": "https://github.com/flow-relay/flowrelay-mcp-server",
+  "license": "AGPL-3.0-or-later",
+  "keywords": [
+    "project-context",
+    "handoffs",
+    "work-management",
+    "engineering",
+    "planning",
+    "forecast",
+    "raid",
+    "project-qa",
+    "summaries",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Flow Relay",
+        "shortDescription": "Project context and handoffs",
+        "longDescription": "Flow Relay connects to your engineering and operations tools in read-only mode and turns recent commits, pull requests, issues, incidents, deployments and docs into grounded handoffs, cited Ask answers, work plans, Monte Carlo finish forecasts and RAID registers.\n\nUse Flow Relay in ChatGPT and Codex to:\n- Ask grounded questions about any project with source citations back to the underlying events.\n- Read or generate project handoffs, correlation insights, onboarding briefs, architecture briefs and release notes.\n- Inspect and update your project plan, work items, dependencies, evidence links, change approvals and RAID register.\n- Check portfolio health and simulated P50, P80 and P95 finish dates.\n\nAccess is scoped per user through OAuth 2.1 consent with selectable permissions (mcp:read, mcp:ai and mcp:write). The tools only read your connected engineering and operations tools; the one exception is the Discord tool, which posts a message or an artifact to a channel you choose.",
+        "developerName": "Flow Relay",
+        "category": "Productivity",
+        "capabilities": [
+          "Answer project questions with cited sources",
+          "Read and generate project handoffs and insights",
+          "Inspect and update work plans and tasks",
+          "Track RAID registers and schedule forecasts",
+          "Review portfolio health across projects"
+        ],
+        "websiteURL": "https://www.flowrelay.it",
+        "supportURL": "https://www.flowrelay.it/support",
+        "privacyPolicyURL": "https://www.flowrelay.it/privacy",
+        "termsOfServiceURL": "https://www.flowrelay.it/terms",
+        "defaultPrompt": [
+          "List my Flow Relay projects and show the latest handoff for the active one.",
+          "Ask my active Flow Relay project what changed this week with cited sources.",
+          "Show open work items, top RAID risks and the finish forecast for my project."
+        ],
+        "brandColor": "#C25A2C",
+        "brandColorDark": "#E27A45",
+        "composerIcon": "./assets/icon.png",
+        "composerIconDark": "./assets/icon-dark.png",
+        "logo": "./assets/logo.png",
+        "logoDark": "./assets/logo-dark.png"
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List accessible workspaces and projects and select the active project",
+              "prompt": "List my Flow Relay projects and check which project is currently active.",
+              "tools_triggered": "get_workspace_context, list_projects",
+              "expected_behavior": "Return the personal and organization projects accessible to the connected account and identify the active project without inventing project names or IDs."
+            },
+            {
+              "description": "Ask a grounded question about project activity with source citations",
+              "prompt": "Ask my active Flow Relay project what changed recently and cite the sources.",
+              "tools_triggered": "list_projects, ask_project",
+              "expected_behavior": "Return a grounded answer from project activity with source citations and the conversation thread_id, admitting any gaps if the activity lacks evidence."
+            },
+            {
+              "description": "Read the latest handoff and open work items for the active project",
+              "prompt": "Show the latest handoff and open work items for my active Flow Relay project.",
+              "tools_triggered": "list_handoffs, list_work_items",
+              "expected_behavior": "Return the latest active handoff summary and the project's open work items with their plan keys, statuses and dates."
+            },
+            {
+              "description": "Inspect open RAID entries and simulated schedule finish dates",
+              "prompt": "Show open RAID risks and the finish forecast for my active Flow Relay project.",
+              "tools_triggered": "list_raid, get_forecast",
+              "expected_behavior": "Return the RAID register entries and the simulated P50, P80 and P95 finish dates from the scheduler without guessing dates."
+            },
+            {
+              "description": "Create a new work item in the active project plan",
+              "prompt": "Create a task in my active Flow Relay project titled 'Verify staging webhook' with a duration of 2 days.",
+              "tools_triggered": "create_work_item",
+              "expected_behavior": "Create the task in the active project plan and return its assigned key and details, or explain clearly if the mcp:write scope was not granted."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Reject access to a project outside the connected account",
+              "prompt": "Show handoffs and work items for a private project belonging to another organization I am not a member of."
+            },
+            {
+              "description": "Refuse modifying external third-party tools",
+              "prompt": "Merge open pull requests on GitHub and close the linked Jira tickets directly."
+            },
+            {
+              "description": "Refuse unrelated financial or payment actions",
+              "prompt": "Transfer $500 from my company bank account to a vendor."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments inside ChatGPT or Codex."
+      },
+      "publication": {
+        "release_notes": "Initial ChatGPT and Codex plugin release aligned with Flow Relay MCP server v1.10.1 (40 tools, 3 prompts, 2 resource templates, OAuth 2.1 consent scopes and 4 workflow skills).",
+        "translations": {
+          "it-IT": {
+            "subtitle": "Contesto di progetto e handoff",
+            "description": "Flow Relay si collega in sola lettura ai tuoi strumenti di sviluppo e operativi e trasforma commit, pull request, issue, incident, deploy e documenti in handoff, risposte Ask con fonti citate, piani di lavoro, previsioni Monte Carlo e registri RAID.\n\nUsa Flow Relay in ChatGPT e Codex per:\n- Fare domande sul progetto ottenendo risposte basate sugli eventi reali e con fonti citate.\n- Leggere o generare handoff, insight di correlazione, brief di onboarding, analisi architetturali e note di rilascio.\n- Consultare e aggiornare il piano di lavoro, le attività, le dipendenze, le evidenze collegate, le approvazioni e il registro RAID.\n- Controllare la salute del portfolio e le date previste P50, P80 e P95.\n\nL'accesso è regolato per singolo utente tramite consenso OAuth 2.1 con permessi selezionabili (mcp:read, mcp:ai, mcp:write). Gli strumenti leggono soltanto i tuoi strumenti di sviluppo e operativi collegati; l'unica eccezione è lo strumento Discord, che pubblica un messaggio o un artefatto in un canale scelto da te."
+          }
+        }
+      }
+    },
+    "ai.mistral.vibe": {
+      "schemaVersion": 1,
+      "displayName": "Flow Relay",
+      "toolNamespace": "flowrelay"
+    }
+  }
+}
